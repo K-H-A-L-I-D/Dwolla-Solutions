@@ -1,45 +1,112 @@
 # Dwolla Software Engineering Intern Technical Assessment
 
-Thank you for applying to be one of our interns this summer! You've made it past the initial resume screen and now we want to see what you can do!
+## Project Overview
 
-Please complete this technical assessment as outlined below. The assessment is not timeboxed, but we've scoped it to a couple hours or less. Please complete it within 3 days and email a link to your solution to [cfinholt@dwolla.com & jgens@dwolla.com](mailto:cfinholt@dwolla.com,jgens@dwolla.com) for review
+This project is a technical assessment for Dwolla's Software Engineering Internship. The initial starter code was provided by Dwolla, with the challenge to implement a comprehensive customer management interface using modern web technologies.
 
-## Scenario
+## Assessment Requirements
 
-You are to build out a page that lists all existing customers in a table and a dialog that can be used to add a new customer to that list. Please try to match the following mock-ups as closely as possible
+The original assessment brief outlined several key objectives:
+- Build a page listing existing customers in a table
+- Create a dialog for adding new customers
+- Use Material UI components
+- Utilize the provided API endpoints
+- Implement the solution in `src/pages/index.tsx`
 
-### List
+## Technology Stack
 
-Recommended MUI Component: [Table](https://mui.com/material-ui/react-table/)
-![List Mock-up](/mocks/list.png)
+Building upon the provided starter code, I enhanced the project with:
+- **Framework**: Next.js
+- **Language**: TypeScript
+- **UI Library**: Material UI
+- **Data Management**: SWR (Stale-While-Revalidate)
 
-### Dialog
+## Implementation Approach
 
-Recommended MUI Component: [Dialog](https://mui.com/material-ui/react-dialog/)
-![Dialog Mock-up](/mocks/dialog.png)
+### Starting Point
 
-## Additional Instructions
+The assessment began with a starter repository containing:
+- Basic project structure
+- Initial API endpoint for customer management
+- Seed data mechanism
+- Basic configuration files
 
-- Your starting point should be `src/pages/index.tsx`, which already provides a basic structure and an API call to get the list of customers
-- API endpoints have been provided, which should be used for getting the list of customers and adding new ones. You can reference `src/pages/api/customers.ts` for details, but you should not have to make changes to that file as part of this exercise
-- Use [Material UI](https://mui.com/material-ui/all-components/) components
-- Use of [Material UI's sx prop](https://mui.com/system/getting-started/the-sx-prop/) for styling is encouraged, but not required
-- You are welcome to use AI tools to assist you (we do!), but please be prepared to explain your design choices and the code that you submit in a follow-up interview with the hiring manager
+### Key Development Challenges
 
-## Setup
+My primary focus was to transform the starter code into a fully functional, user-friendly customer management interface. This involved:
+- Implementing a comprehensive customer list view
+- Creating an intuitive "Add Customer" dialog
+- Handling form validation
+- Managing API interactions
+- Ensuring a responsive and clean user interface
 
-**Important Note:** Do NOT fork this repository
+## Code Highlights
 
-1. Use this template to create a new repository so that your solution lives on your own GitHub profile (click `Use this template` → `Create a new repository`)
-2. Install the latest LTS version of [Node](https://nodejs.org/en) on your machine. If you use [Node Version Manager](https://github.com/nvm-sh/nvm) on Mac/Linux, run `nvm install`
-3. Run `npm ci` to install dependencies
-4. Run `npm run seed` to get a starting point for your customers data (this can be re-run if the data file gets messed up somehow)
-5. Run `npm run dev` to start the server
-6. In a browser, navigate to `http://localhost:3000`
+```typescript
+// Intelligent display name generation
+const getDisplayName = (customer: Customer) => {
+  return customer.businessName || `${customer.firstName} ${customer.lastName}`;
+};
 
-## Submitting
+// Comprehensive form validation
+const validateForm = () => {
+  const errors = {
+    firstName: !firstName.trim(),
+    lastName: !lastName.trim(),
+    email: !email.trim() || !email.includes('@')
+  };
+  
+  setFormErrors(errors);
+  return !Object.values(errors).some(Boolean);
+};
+```
 
-1. Complete the assessment sometime within the next 3 days
-2. Push your solution to your repo
-3. Make sure that your repo is public
-4. Email [cfinholt@dwolla.com & jgens@dwolla.com](mailto:cfinholt@dwolla.com,jgens@dwolla.com) a link to your repo so that we can review it
+## Getting Started
+
+To run the project locally:
+
+```bash
+# Install dependencies
+npm ci
+
+# Seed initial data
+npm run seed
+
+# Start development server
+npm run dev
+```
+
+## Project Structure
+
+- `src/pages/index.tsx`: Main customer management interface
+- `src/pages/api/customers.ts`: API endpoint for customer operations
+- `data/customers.json`: Customer data storage
+
+## Features Implemented
+
+- Dynamic customer list with loading and error states
+- Add Customer dialog with comprehensive form validation
+- Responsive design using Material UI
+- Real-time data updates
+- Error handling for API interactions
+
+## Potential Improvements
+
+While meeting the assessment requirements, potential enhancements could include:
+- More advanced email validation
+- Customer edit functionality
+- Pagination for customer list
+- Enhanced error handling
+
+## Submission Details
+
+- **Assessment Deadline**: Within 3 days of receiving the challenge
+- **Submission Method**: Public GitHub repository
+- **Contact**: Submitted to cfinholt@dwolla.com & jgens@dwolla.com
+
+## Acknowledgments
+
+Special thanks to Dwolla for providing the initial project structure and the opportunity to demonstrate technical skills through this assessment.
+
+Developed by [Your Name]
+GitHub: [Your GitHub Profile]
